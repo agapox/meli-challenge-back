@@ -1,17 +1,24 @@
 import express from 'express';
+import 'dotenv/config';
+import itemsRouter from './routes/items.router';
 
 const app = express();
 
 // middleware transform req.body to JSON
 app.use(express.json());
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 
-app.get('/', (_req,res) => {
-    console.log('Working!!! ' + new Date().toLocaleDateString())
-    res.send('Hello world')
-})
+const paths = {
+    items: '/api/items'
+}
+
+app.use(paths.items, itemsRouter)
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 })
+
+export {
+    paths
+}
