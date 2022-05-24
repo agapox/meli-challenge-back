@@ -6,3 +6,5 @@
 
 # IGNORE BUILD FOLDER
 /build
+
+.vscode

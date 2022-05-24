@@ -17,7 +17,7 @@ const searchItems = async(req = request, res = response) => {
 
         let catArr: string[] = [];
 
-        if (filters[0]?.id === 'category') {
+        if (filters && filters[0]?.id === 'category') {
             catArr = filters.filter(({id}: {id: string}) => {
                 return id === 'category';
             }).pop().values.map((cat: any) => {
@@ -25,7 +25,7 @@ const searchItems = async(req = request, res = response) => {
             }).pop().map(({name}: {name: string}) => {
                 return name;
             });
-        } else {
+        } else if (available_filters && available_filters[0]?.id === 'category') {
             let catId = available_filters.filter(({id}: {id: string}) => {
                 return id === 'category';
             }).pop().values.sort((a: any, b: any) => {
